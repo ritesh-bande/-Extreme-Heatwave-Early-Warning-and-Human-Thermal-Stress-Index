@@ -55,7 +55,7 @@ export function DashboardMap({ wards, selectedWardId, onSelectWard, colorMetric,
   const currentCenter = CITIES[selectedCity] || CITIES['Nagpur'];
 
   // Prepare points for IDW
-  const points: HeatPoint[] = wards
+  const points: any[] = wards
     .filter(w => typeof w[colorMetric] === 'number')
     .map(w => ({
       lat: w.centroid_lat,
