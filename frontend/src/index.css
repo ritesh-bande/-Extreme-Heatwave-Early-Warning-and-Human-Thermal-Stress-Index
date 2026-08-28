@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: theme('colors.base');
+    color: theme('colors.primary');
+    font-family: theme('fontFamily.sans');
+  }
+}
+
+@layer components {
+  .tabular-data {
+    font-family: theme('fontFamily.mono');
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .card-surface {
+    background-color: theme('colors.surface');
+    border: 1px solid theme('colors.subtle');
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  }
+}
+
+/* Custom Scrollbar for Ops Dashboard */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: theme('colors.base');
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: theme('colors.subtle');
+  border-radius: 4px;
+}
+
+
+
+
+/* Leaflet Overrides for Dark Mode */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: theme('colors.surface') !important;
+  color: theme('colors.primary') !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+  border: 1px solid theme('colors.subtle') !important;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: theme('colors.secondary') !important;
+}
+
+
+/* Satellite + Terrain Base Filter */
+.leaflet-tile-pane {
+  filter: saturate(1.25) contrast(1.1) brightness(0.95);
+}
+.hillshade-layer {
+  mix-blend-mode: multiply;
+}
+.leaflet-overlay-pane {
+  filter: none; 
+}
+
+.idw-blend-layer {
+  mix-blend-mode: multiply;
+}

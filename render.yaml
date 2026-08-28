@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: heatwave-ews-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    rootDir: frontend
+    envVars:
+      - key: NODE_VERSION
+        value: ~18.0.0
