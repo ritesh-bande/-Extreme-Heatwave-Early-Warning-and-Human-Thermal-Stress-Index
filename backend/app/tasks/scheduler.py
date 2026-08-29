@@ -11,7 +11,7 @@ Uses APScheduler to periodically:
 import logging
 from datetime import datetime, timezone
 
-from app.tasks.fetch_weather import fetch_weather_sync
+from app.tasks.fetch_weather import fetch_weather
 from app.tasks.downscale import downscale_to_ward
 from app.services.thermal_indices import (
     compute_heat_index,
@@ -419,7 +419,7 @@ async def run_ingestion():
 
     for ward in SAMPLE_WARDS:
         try:
-            weather = fetch_weather_sync(
+            weather = await fetch_weather(
                 ward["centroid_lat"], ward["centroid_lon"]
             )
             ward_weather = downscale_to_ward(weather, ward)
