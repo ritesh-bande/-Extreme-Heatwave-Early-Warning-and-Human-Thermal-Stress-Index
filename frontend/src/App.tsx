@@ -287,11 +287,11 @@ function App() {
               <div className="relative z-10 flex justify-between items-end bg-base/50 p-3 rounded-2xl border border-subtle/50 backdrop-blur-sm">
                 <div className="text-center flex-1 border-r border-subtle">
                   <div className="text-xs text-secondary font-semibold uppercase tracking-ui mb-0.5">Temp</div>
-                  <div className="text-lg font-bold text-primary transition-all">{currentWard.temp_c.toFixed(1)}°C</div>
+                  <div className="text-lg font-bold text-primary transition-all">{(currentWard.temp_c || 0).toFixed(1)}°C</div>
                 </div>
                 <div className="text-center flex-1">
                   <div className="text-xs text-secondary font-semibold uppercase tracking-ui mb-0.5">Humidity</div>
-                  <div className="text-lg font-bold text-primary transition-all">{currentWard.rh_pct.toFixed(0)}%</div>
+                  <div className="text-lg font-bold text-primary transition-all">{(currentWard.rh_pct || 0).toFixed(0)}%</div>
                 </div>
               </div>
             </div>
@@ -309,7 +309,7 @@ function App() {
                 <div className="text-xs font-semibold text-secondary uppercase mb-4 tracking-ui">Live Risk Multipliers</div>
                 {rawWard.breakdown && (() => {
                   // Dynamic multiplier based on live temperature override vs base temperature
-                  const tempScale = currentWard.temp_c / rawWard.temp_c; 
+                  const tempScale = (currentWard.temp_c || 35) / rawWard.temp_c; 
                   
                   const posFactors = Object.entries(rawWard.breakdown).filter(([k, v]) => v > 0 && k !== 'thermal_stress').sort((a,b) => b[1] - a[1]);
                   const totalPos = posFactors.reduce((sum, [,v]) => sum + (v * tempScale), 0) || 1;
@@ -357,7 +357,7 @@ function App() {
                 <div className="bg-base/80 p-4 rounded-2xl border border-subtle shadow-inner">
                   <div className="flex justify-between text-xs mb-3 items-center">
                     <span className="text-secondary font-semibold uppercase tracking-ui text-xs">Ambient Temp</span>
-                    <span className="font-bold text-orange-400 text-sm drop-shadow-[0_0_5px_rgba(249,115,22,0.5)]">{currentWard.temp_c.toFixed(1)}°C</span>
+                    <span className="font-bold text-orange-400 text-sm drop-shadow-[0_0_5px_rgba(249,115,22,0.5)]">{(currentWard.temp_c || 0).toFixed(1)}°C</span>
                   </div>
                   <input type="range" min="20" max="55" step="0.5" 
                     value={currentWard.temp_c} onChange={(e) => setSimTemp(parseFloat(e.target.value))}
@@ -366,7 +366,7 @@ function App() {
                 <div className="bg-base/80 p-4 rounded-2xl border border-subtle shadow-inner">
                   <div className="flex justify-between text-xs mb-3 items-center">
                     <span className="text-secondary font-semibold uppercase tracking-ui text-xs">Relative Hum</span>
-                    <span className="font-bold text-accent text-sm drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">{currentWard.rh_pct.toFixed(0)}%</span>
+                    <span className="font-bold text-accent text-sm drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">{(currentWard.rh_pct || 0).toFixed(0)}%</span>
                   </div>
                   <input type="range" min="10" max="100" step="1" 
                     value={currentWard.rh_pct} onChange={(e) => setSimRh(parseFloat(e.target.value))}
@@ -470,12 +470,12 @@ function App() {
                   </div>
                   <div className="flex justify-between items-center mb-2 relative z-10">
                     <span className="text-secondary font-semibold text-xs uppercase tracking-ui">Cattle THI</span>
-                    <span className={`text-[8px] font-bold px-2 py-0.5 rounded border ${currentWard.rh_pct > 60 && currentWard.temp_c > 35 ? 'bg-red-500/10 text-accent border-subtle' : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'}`}>
-                      {currentWard.rh_pct > 60 && currentWard.temp_c > 35 ? 'CRITICAL' : 'ELEVATED'}
+                    <span className={`text-[8px] font-bold px-2 py-0.5 rounded border ${(currentWard.rh_pct || 0) > 60 && (currentWard.temp_c || 0) > 35 ? 'bg-red-500/10 text-accent border-subtle' : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'}`}>
+                      {(currentWard.rh_pct || 0) > 60 && (currentWard.temp_c || 0) > 35 ? 'CRITICAL' : 'ELEVATED'}
                     </span>
                   </div>
                   <div className="text-3xl tabular-data font-black text-primary relative z-10 tracking-tighter">
-                    {Math.round((1.8 * currentWard.temp_c + 32) - ((0.55 - 0.0055 * currentWard.rh_pct) * (1.8 * currentWard.temp_c - 26)))}
+                    {Math.round((1.8 * (currentWard.temp_c || 35) + 32) - ((0.55 - 0.0055 * (currentWard.rh_pct || 50)) * (1.8 * (currentWard.temp_c || 35) - 26)))}
                   </div>
                   <div className="text-xs text-tertiary mt-2 leading-tight relative z-10">Milk yield reduction detected. Broadcast alert active.</div>
                 </div>
