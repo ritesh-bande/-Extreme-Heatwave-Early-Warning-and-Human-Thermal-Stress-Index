@@ -73,8 +73,13 @@ async def fetch_weather(lat: float, lon: float) -> dict:
     }
 
 
+
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        headers = {
+            "User-Agent": "HeatwaveEWS/1.0 (sih2024 demo; +https://github.com/ritesh-bande)",
+            "Accept-Encoding": "gzip, deflate, br"
+        }
+        async with httpx.AsyncClient(timeout=30.0, headers=headers) as client:
             resp = await client.get(OPEN_METEO_BASE, params=params)
             resp.raise_for_status()
             data = resp.json()
@@ -82,7 +87,7 @@ async def fetch_weather(lat: float, lon: float) -> dict:
         # Fallback to mock data if Open-Meteo blocks Render IP or fails
         import random
         from datetime import timedelta
-        base_temp = random.uniform(35.0, 45.0)
+        base_temp = random.uniform(30.0, 36.0) # Lowered fallback temp slightly
         base_rh = random.uniform(40.0, 80.0)
         now_str = datetime.utcnow().isoformat()
         dates = [(datetime.utcnow() + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(5)]
@@ -104,6 +109,7 @@ async def fetch_weather(lat: float, lon: float) -> dict:
                 "shortwave_radiation_sum": [random.uniform(15.0, 25.0) for _ in dates]
             }
         }
+
 
 
     # Parse current conditions
