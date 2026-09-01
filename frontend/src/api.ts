@@ -85,8 +85,8 @@ export async function fetchPersonalAlert(citizenId: string): Promise<{sms_previe
   return res.json();
 }
 
-export async function getCoolingRecommendations(): Promise<any[]> {
-  const res = await fetch(`${API_BASE}/cooling/recommend`);
+export async function getCoolingRecommendations(city: string = 'Nagpur'): Promise<any[]> {
+  const res = await fetch(`${API_BASE}/cooling/recommend?city=${city}`);
   if (!res.ok) throw new Error(`Failed to fetch cooling recommendations: ${res.status}`);
   return res.json();
 }

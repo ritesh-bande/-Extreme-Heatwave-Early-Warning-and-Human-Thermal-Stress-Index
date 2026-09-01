@@ -22,7 +22,7 @@ function App() {
   const fetchCoolingSites = async () => {
     setLoadingCooling(true);
     try {
-      const data = await getCoolingRecommendations();
+      const data = await getCoolingRecommendations(selectedCity);
       setCoolingSites(data);
     } catch (e) {
       console.error(e);

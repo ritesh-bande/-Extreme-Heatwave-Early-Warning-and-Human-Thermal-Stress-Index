@@ -15,7 +15,7 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     return math.sqrt((lat1 - lat2)**2 + (lon1 - lon2)**2)
 
 @router.get("/recommend")
-async def recommend_cooling_center_sites():
+async def recommend_cooling_center_sites(city: str = 'Nagpur'):
     """
     Recommends 3 optimal sites for new cooling centers based on:
     Population Density * Vulnerability Score * Distance to Nearest Center
@@ -27,6 +27,8 @@ async def recommend_cooling_center_sites():
     
     for ward_id, bundle in store.items():
         ward = bundle["ward"]
+        if city.lower() not in ward.get("name", "").lower():
+            continue
         current = bundle["current"]
         
         lat = ward.get("centroid_lat", 0)
