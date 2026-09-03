@@ -208,7 +208,7 @@ export function DashboardMap({ wards, selectedWardId, onSelectWard, colorMetric,
             >
               <div className="flex flex-col gap-1 text-xs">
                 <span className="text-primary uppercase tracking-ui border-b border-subtle pb-1 text-[10px]">AI RECOMMENDED SITE</span>
-                <span className="font-bold">?? {site.ward_name}</span>
+                <span className="font-bold">{site.ward_name}</span>
                 <span className="text-secondary font-normal">{site.reasoning}</span>
               </div>
             </Tooltip>

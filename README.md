@@ -1,6 +1,6 @@
 # HEATSHIELD - Extreme Heatwave Early Warning and Human Thermal Stress Index
 
-?? **Live Demo:** [https://extreme-heatwave-early-warning-and.vercel.app/](https://extreme-heatwave-early-warning-and.vercel.app/)
+**Live Demo:** [https://extreme-heatwave-early-warning-and.vercel.app/](https://extreme-heatwave-early-warning-and.vercel.app/)
 
 A full-stack **ward-level heat risk early warning system** that ingests weather forecasts, computes physiological heat stress indices (WBGT, Heat Index, UTCI), scores ward vulnerability, and dispatches role-specific alerts to construction workers, healthcare, power grid operators, farmers, and the general public.
 
