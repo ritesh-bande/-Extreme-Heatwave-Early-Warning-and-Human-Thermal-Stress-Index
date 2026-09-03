@@ -1,6 +1,32 @@
-# Heatwave EWS — Heat Stress & Mortality Risk Early Warning System
+# HEATSHIELD - Extreme Heatwave Early Warning and Human Thermal Stress Index
+
+?? **Live Demo:** [https://extreme-heatwave-early-warning-and.vercel.app/](https://extreme-heatwave-early-warning-and.vercel.app/)
 
 A full-stack **ward-level heat risk early warning system** that ingests weather forecasts, computes physiological heat stress indices (WBGT, Heat Index, UTCI), scores ward vulnerability, and dispatches role-specific alerts to construction workers, healthcare, power grid operators, farmers, and the general public.
+
+
+## ?? Smart Weather & Risk Tracking
+* **Real-Feel Weather:** It measures how hot it actually feels by including humidity, wind, and sun, not just the basic temperature.
+* **True Risk Score:** A 42C day is deadlier in a slum than in a wealthy neighborhood. The app calculates danger based on who lives there (elderly, people without AC, crowded housing).
+* **"What-If" Simulator:** Officials can test fake weather scenarios (like dragging a slider to make it hotter) to see what would happen and plan for worst-case emergencies.
+
+## ?? Targeted Alerts (Not Just "It's Hot")
+* **Power Grids:** Predicts power blackouts and automatically slows down public EV chargers to prevent electrical fires.
+* **Outdoor Workers:** Tells construction sites exactly when to force rest breaks or stop work to keep laborers safe.
+* **Hospitals:** Warns local clinics to stock up on IV fluids and prepare for a specific jump in heatstroke patients.
+* **Farmers:** Warns farmers when their animals are overheating so they can protect their livestock and milk supply.
+
+## ??? Maps & Emergency Planning
+* **Smart Relief Placement:** Automatically figures out the absolute best spots to put emergency cooling centers (like AC buses or water stations) to reach the people who need them most.
+* **Visual Dashboard:** A clear satellite map that lets city officials instantly see which neighborhoods are in the most danger.
+
+## ?? Connecting with the Community
+* **Custom Advice:** Citizens can log their specific risks (e.g., pregnant, elderly, no AC), and the app sends them personalized survival steps instead of a generic text message.
+* **Smarter Over Time:** Hospitals input their actual heatstroke patient numbers, which teaches the app to make better predictions next summer.
+* **Voice Calls:** Sends automated voice warnings in local languages so people who cannot read or do not own smartphones still get the message.
+
+## ??? Crash-Proof Tech
+* **Never Goes Down:** If the live weather satellite feed breaks or disconnects, the system automatically switches to historical backup data so the dashboard never crashes during a live disaster.
 
 ## Architecture
 
