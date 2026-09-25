@@ -1,3 +1,4 @@
+import { FALLBACK_WARDS } from './fallbackData';
 import React, { useState, useEffect } from 'react';
 import { fetchWards, WardData, getCoolingRecommendations } from './api';
 import { DashboardMap } from './components/Map';
@@ -8,8 +9,8 @@ import { HospitalFeedback } from './components/HospitalFeedback';
 import { IVRPlayer } from './components/IVRPlayer';
 
 function App() {
-  const [wards, setWards] = useState<WardData[]>([]);
-  const [selectedWardId, setSelectedWardId] = useState<number | null>(null);
+  const [wards, setWards] = useState<WardData[]>(FALLBACK_WARDS as any);
+  const [selectedWardId, setSelectedWardId] = useState<number | null>(FALLBACK_WARDS[0]?.id || null);
   const [now, setNow] = useState(new Date());
 
   const [selectedCity, setSelectedCity] = useState('Nagpur');
